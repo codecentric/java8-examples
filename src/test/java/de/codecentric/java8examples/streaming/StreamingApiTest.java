@@ -5,14 +5,14 @@ import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInA
 import static org.junit.Assert.assertThat;
 
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import de.codecentric.java8examples.Person;
 import org.junit.Before;
 import org.junit.Test;
+
+import de.codecentric.java8examples.Person;
 
 /**
  * Created with IntelliJ IDEA.
@@ -35,8 +35,8 @@ public class StreamingApiTest {
         List<String> femaleLastNames =
                 persons.stream()
                 .filter(p -> p.getGender().equals(Person.Gender.FEMALE))
-                .map(p -> p.getLastName())
-                .collect(Collectors.toList());
+                .<String> map(p -> p.getLastName())
+                .collect(Collectors.<String> toList());
 
         assertThat(femaleLastNames, containsInAnyOrder("Jungle", "Smith"));
     }
