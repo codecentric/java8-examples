@@ -1,5 +1,6 @@
 package de.codecentric.java8examples;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 public class TestUtil {
 
     public static Date dateOf(int month, int day, int year) {
-        return new Date(year - 1900, month + 1, day);
+    	return new Date(LocalDate.of(year, month, day).toEpochDay());
     }
 
     public static List<Person> getPersons() {
