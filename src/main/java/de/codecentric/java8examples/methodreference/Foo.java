@@ -7,9 +7,9 @@ package de.codecentric.java8examples.methodreference;
  * Time: 16:27
  * To change this template use File | Settings | File Templates.
  */
-public class MethodReference {
+public class Foo {
 
     public String doSomething() {
-        return "MethodReference.doSomething()";
+        return "Foo.doSomething()";
     }
 }

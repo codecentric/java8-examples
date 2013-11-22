@@ -14,19 +14,19 @@ import org.junit.Test;
  * Time: 16:29
  * To change this template use File | Settings | File Templates.
  */
-public class MethodReferenceTest {
+public class MethodReferenceExampleTest {
 
-    private MethodReference ref;
+    private Foo myFoo;
 
     @Before
     public void setUp() throws Exception {
-        ref = new MethodReference();
+        myFoo = new Foo();
     }
 
     @Test
-    public void callingMethodFromRunnable() throws Exception {
-        Callable<String> callable = ref::doSomething;
+    public void methodReferencToFooMethod() throws Exception {
+        Callable<String> callable = myFoo::doSomething;
 
-        assertEquals(ref.doSomething(), callable.call());
+        assertEquals(myFoo.doSomething(), callable.call());
     }
 }
