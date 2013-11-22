@@ -11,11 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Created with IntelliJ IDEA.
- * User: bene
- * Date: 04.10.13
- * Time: 15:13
- * To change this template use File | Settings | File Templates.
+ * Test case showing how lambda expressions work.
  */
 public class TransformerTest {
 

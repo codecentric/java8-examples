@@ -5,11 +5,8 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
- * Created with IntelliJ IDEA.
- * User: bene
- * Date: 04.10.13
- * Time: 15:06
- * To change this template use File | Settings | File Templates.
+ * A transformer that uses functional interfaces which can be implemented using lambda expressions. Look at the
+ * TransformerTest to see lambdas in action.
  */
 public class Transformer<E> {
 

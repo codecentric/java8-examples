@@ -15,11 +15,7 @@ import org.junit.Test;
 import de.codecentric.java8examples.Person;
 
 /**
- * Created with IntelliJ IDEA.
- * User: bene
- * Date: 04.10.13
- * Time: 13:48
- * To change this template use File | Settings | File Templates.
+ * Test case showing the use of the streaming API.
  */
 public class StreamingApiTest {
 

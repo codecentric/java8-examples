@@ -13,11 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Created with IntelliJ IDEA.
- * User: bene
- * Date: 04.10.13
- * Time: 16:41
- * To change this template use File | Settings | File Templates.
+ * Test case showing how a {@link Comparator} can be implemented using a lambda expression.
  */
 public class LambdaBasedComparatorTest {
 

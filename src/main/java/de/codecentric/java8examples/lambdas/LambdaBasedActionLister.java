@@ -3,17 +3,13 @@ package de.codecentric.java8examples.lambdas;
 import javax.swing.*;
 
 /**
- * Created with IntelliJ IDEA.
- * User: bene
- * Date: 04.10.13
- * Time: 15:57
- * To change this template use File | Settings | File Templates.
+ * Test case showing how a {@link java.awt.event.ActionListener} can be implemented using a lambda expression.
  */
-public class EventLambdas extends JFrame {
+public class LambdaBasedActionLister extends JFrame {
 
     private int clicks = 0;
 
-    public EventLambdas() {
+    public LambdaBasedActionLister() {
         JButton btn = new JButton("0");
         btn.setSize(50, 50);
         add(btn);
@@ -30,6 +26,6 @@ public class EventLambdas extends JFrame {
     }
 
     public static void main(String[] args) {
-        new EventLambdas();
+        new LambdaBasedActionLister();
     }
 }
