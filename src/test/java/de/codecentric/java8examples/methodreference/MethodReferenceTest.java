@@ -25,8 +25,8 @@ public class MethodReferenceTest {
 
     @Test
     public void callingMethodFromRunnable() throws Exception {
-        Callable<String> callable = ref::method;
+        Callable<String> callable = ref::doSomething;
 
-        assertEquals(ref.method(), callable.call());
+        assertEquals(ref.doSomething(), callable.call());
     }
 }

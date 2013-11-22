@@ -9,7 +9,7 @@ package de.codecentric.java8examples.methodreference;
  */
 public class MethodReference {
 
-    public String method() {
-        return "MethodReference.method()";
+    public String doSomething() {
+        return "MethodReference.doSomething()";
     }
 }
