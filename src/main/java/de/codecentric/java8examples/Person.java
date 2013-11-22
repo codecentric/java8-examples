@@ -4,11 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created with IntelliJ IDEA.
- * User: bene
- * Date: 04.10.13
- * Time: 13:41
- * To change this template use File | Settings | File Templates.
+ * A simple class that represents a person
  */
 public class Person {
 

@@ -5,11 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 /**
- * Created with IntelliJ IDEA.
- * User: bene
- * Date: 04.10.13
- * Time: 14:54
- * To change this template use File | Settings | File Templates.
+ * Test case showing how default methods work.
  */
 public class GreetingServiceTest {
 

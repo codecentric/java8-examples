@@ -1,11 +1,8 @@
 package de.codecentric.java8examples.defaultmethods;
 
 /**
- * Created with IntelliJ IDEA.
- * User: bene
- * Date: 04.10.13
- * Time: 14:59
- * To change this template use File | Settings | File Templates.
+ * An abstract base class for GreetingService implementations that forces derived classes to implement {@link #greet()}
+ * by making it abstract.
  */
 abstract class AbstractGreetingService implements GreetingService {
 

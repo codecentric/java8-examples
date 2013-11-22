@@ -1,11 +1,7 @@
 package de.codecentric.java8examples.defaultmethods;
 
 /**
- * Created with IntelliJ IDEA.
- * User: bene
- * Date: 04.10.13
- * Time: 15:55
- * To change this template use File | Settings | File Templates.
+ * An alternative implementation of GreetingService the provides it's own implementation of {@link #greet()}.
  */
 public interface AlternativeGreetingService {
 
