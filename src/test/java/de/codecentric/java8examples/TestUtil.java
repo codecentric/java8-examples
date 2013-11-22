@@ -15,7 +15,7 @@ import java.util.List;
 public class TestUtil {
 
     public static Date dateOf(int month, int day, int year) {
-    	return new Date(LocalDate.of(year, month, day).toEpochDay());
+        return new Date(LocalDate.of(year, month, day).toEpochDay());
     }
 
     public static List<Person> getPersons() {
