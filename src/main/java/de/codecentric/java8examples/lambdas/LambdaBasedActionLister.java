@@ -5,11 +5,11 @@ import javax.swing.*;
 /**
  * Test case showing how a {@link java.awt.event.ActionListener} can be implemented using a lambda expression.
  */
-public class EventLambdas extends JFrame {
+public class LambdaBasedActionLister extends JFrame {
 
     private int clicks = 0;
 
-    public EventLambdas() {
+    public LambdaBasedActionLister() {
         JButton btn = new JButton("0");
         btn.setSize(50, 50);
         add(btn);
@@ -26,6 +26,6 @@ public class EventLambdas extends JFrame {
     }
 
     public static void main(String[] args) {
-        new EventLambdas();
+        new LambdaBasedActionLister();
     }
 }
