@@ -27,16 +27,16 @@ public class LambdaExampleTest {
 
     @Test
     public void peterIsOlderThan30() throws Exception {
-        // explicit declaration of type
-        assertTrue(example.matches((Person person) -> person.getAge() > 30));
-
-
-        example.matches(new Predicate<Person>() {
+        // old school
+        assertTrue(example.matches(new Predicate<Person>() {
             @Override
             public boolean test(Person person) {
-                return false;  //To change body of implemented methods use File | Settings | File Templates.
+                return person.getAge() > 30;
             }
-        });
+        }));
+
+        // new: implement the predicate using lambda expression
+        assertTrue(example.matches((Person person) -> person.getAge() > 30));
     }
 
     @Test
