@@ -22,7 +22,7 @@ public class LambdaExampleTest {
     public void setUp() throws Exception {
         // Nerd info: 5/15/1962 was the release date of Amazing Fantasy #15, where Spider Man had his first appearance
         peter = new Person("Peter", "Parker", dateOf(8, 15, 1962), Person.Gender.MALE);
-        example = new LambdaExample<Person>(peter);
+        example = new LambdaExample<>(peter);
     }
 
     @Test
