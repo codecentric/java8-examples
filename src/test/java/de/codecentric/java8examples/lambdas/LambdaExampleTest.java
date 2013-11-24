@@ -42,7 +42,7 @@ public class LambdaExampleTest {
     @Test
     public void printAge() throws Exception {
         // type is inferred from context
-        assertEquals("Parker", example.transform(p -> p.getLastName()));
+        assertEquals("Parker", example.apply(p -> p.getLastName()));
     }
 
     @Test
