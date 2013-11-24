@@ -43,13 +43,13 @@ public class LambdaExampleTest {
     }
 
     @Test
-    public void printAge() throws Exception {
+    public void getAgeFromWrappedElementViaFunctionApplication() throws Exception {
         // type is inferred from context
         assertEquals("Parker", example.apply(p -> p.getLastName()));
     }
 
     @Test
-    public void transgendering() throws Exception {
+    public void changeStateOfWrappedElementViaConsumer() throws Exception {
         // this will change the state of the wrapped element!
         example.consume(p -> p.setGender(oppositeOf(p.getGender())));
 
