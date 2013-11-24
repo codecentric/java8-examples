@@ -1,9 +1,12 @@
 package de.codecentric.java8examples.lambdas;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import de.codecentric.java8examples.Person;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
@@ -29,4 +32,17 @@ public class SpringJdbcSupportWithLambdas extends JdbcDaoSupport {
                 (rs, i) -> new Person(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME"), rs.getDate(3), Person.Gender.MALE));
     }
 
+    // if things get messy, use a method reference
+    // overall this is more verbose but maybe better for readability?
+    public Person findPersonByIfWithMethodReference(String id) {
+        return getJdbcTemplate().queryForObject("SELECT * FROM persons WHERE id = " + id, this::mapPerson);
+    }
+
+    private Person mapPerson(ResultSet rs, int i) throws SQLException {
+        return new Person(
+                rs.getString("FIRST_NAME"),
+                rs.getString("LAST_NAME"),
+                rs.getDate(3),
+                Person.Gender.MALE);
+    }
 }
