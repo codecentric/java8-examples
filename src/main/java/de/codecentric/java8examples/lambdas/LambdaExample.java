@@ -8,11 +8,11 @@ import java.util.function.Predicate;
  * A transformer that uses functional interfaces which can be implemented using lambda expressions. Look at the
  * TransformerTest to see lambdas in action.
  */
-public class Transformer<E> {
+public class LambdaExample<E> {
 
     private E elem;
 
-    public Transformer(E elem) {
+    public LambdaExample(E elem) {
         this.elem = elem;
     }
 
