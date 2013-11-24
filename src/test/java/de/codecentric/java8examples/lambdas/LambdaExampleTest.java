@@ -37,6 +37,9 @@ public class LambdaExampleTest {
 
         // new: implement the predicate using lambda expression
         assertTrue(example.matches((Person person) -> person.getAge() > 30));
+
+        // even shorter: let the compiler work out the correct type
+        assertTrue(example.matches(p -> p.getAge() > 30));
     }
 
     @Test
