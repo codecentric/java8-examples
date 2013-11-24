@@ -50,6 +50,7 @@ public class LambdaExampleTest {
 
     @Test
     public void transgendering() throws Exception {
+        // this will change the state of the wrapped element!
         example.consume(p -> p.setGender(oppositeOf(p.getGender())));
 
         assertEquals(Person.Gender.FEMALE, peter.getGender());
