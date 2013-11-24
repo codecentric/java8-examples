@@ -14,6 +14,7 @@ public class SpringJdbcSupportWithLambdas extends JdbcDaoSupport {
 
     public Person findPersonById(String id) {
         return getJdbcTemplate().queryForObject(
+                // not secured against SQL injections, don't do this in production code!
                 "SELECT * FROM persons WHERE id = " + id,
                 new RowMapper<Person>() {
                     @Override
