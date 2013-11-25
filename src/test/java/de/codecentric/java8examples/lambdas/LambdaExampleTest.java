@@ -13,41 +13,45 @@ import org.junit.Test;
 /**
  * Test case showing how lambda expressions work.
  */
-public class TransformerTest {
+public class LambdaExampleTest {
 
-    private Transformer<Person> transformer;
+    private LambdaExample<Person> example;
     private Person peter;
 
     @Before
     public void setUp() throws Exception {
         // Nerd info: 5/15/1962 was the release date of Amazing Fantasy #15, where Spider Man had his first appearance
         peter = new Person("Peter", "Parker", dateOf(8, 15, 1962), Person.Gender.MALE);
-        transformer = new Transformer<Person>(peter);
+        example = new LambdaExample<>(peter);
     }
 
     @Test
     public void peterIsOlderThan30() throws Exception {
-        // explicit declaration of type
-        assertTrue(transformer.matches((Person person) -> person.getAge() > 30));
-
-
-        transformer.matches(new Predicate<Person>() {
+        // old school
+        assertTrue(example.matches(new Predicate<Person>() {
             @Override
             public boolean test(Person person) {
-                return false;  //To change body of implemented methods use File | Settings | File Templates.
+                return person.getAge() > 30;
             }
-        });
+        }));
+
+        // new: implement the predicate using lambda expression
+        assertTrue(example.matches((Person person) -> person.getAge() > 30));
+
+        // even shorter: let the compiler work out the correct type
+        assertTrue(example.matches(p -> p.getAge() > 30));
     }
 
     @Test
-    public void printAge() throws Exception {
+    public void getAgeFromWrappedElementViaFunctionApplication() throws Exception {
         // type is inferred from context
-        assertEquals("Parker", transformer.transform(p -> p.getLastName()));
+        assertEquals("Parker", example.apply(p -> p.getLastName()));
     }
 
     @Test
-    public void transgendering() throws Exception {
-        transformer.consume(p -> p.setGender(oppositeOf(p.getGender())));
+    public void changeStateOfWrappedElementViaConsumer() throws Exception {
+        // this will change the state of the wrapped element!
+        example.consume(p -> p.setGender(oppositeOf(p.getGender())));
 
         assertEquals(Person.Gender.FEMALE, peter.getGender());
     }
