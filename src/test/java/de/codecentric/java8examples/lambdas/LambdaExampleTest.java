@@ -1,9 +1,9 @@
 package de.codecentric.java8examples.lambdas;
 
-import static de.codecentric.java8examples.TestUtil.dateOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import de.codecentric.java8examples.Person;
@@ -21,7 +21,7 @@ public class LambdaExampleTest {
     @Before
     public void setUp() throws Exception {
         // Nerd info: 5/15/1962 was the release date of Amazing Fantasy #15, where Spider Man had his first appearance
-        peter = new Person("Peter", "Parker", dateOf(8, 15, 1962), Person.Gender.MALE);
+        peter = new Person("Peter", "Parker", LocalDate.of(1962, 8, 15), Person.Gender.MALE);
         example = new LambdaExample<>(peter);
     }
 

@@ -19,7 +19,7 @@ public class SpringJdbcSupportWithLambdas extends JdbcDaoSupport {
                 new RowMapper<Person>() {
                     @Override
                     public Person mapRow(ResultSet rs, int i) throws SQLException {
-                        return new Person(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME"), rs.getDate(3), Person.Gender.MALE);
+                        return new Person(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME"), rs.getDate(3).toLocalDate(), Person.Gender.MALE);
                     }
                 });
     }
@@ -27,7 +27,7 @@ public class SpringJdbcSupportWithLambdas extends JdbcDaoSupport {
     public Person findPersonByIdWithLambdas(String id) {
         return getJdbcTemplate().queryForObject(
                 "SELECT * FROM persons WHERE id = " + id,
-                (rs, i) -> new Person(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME"), rs.getDate(3), Person.Gender.MALE));
+                (rs, i) -> new Person(rs.getString("FIRST_NAME"), rs.getString("LAST_NAME"), rs.getDate(3).toLocalDate(), Person.Gender.MALE));
     }
 
     // if things get messy, use a method reference
@@ -40,7 +40,7 @@ public class SpringJdbcSupportWithLambdas extends JdbcDaoSupport {
         return new Person(
                 rs.getString("FIRST_NAME"),
                 rs.getString("LAST_NAME"),
-                rs.getDate(3),
+                rs.getDate(3).toLocalDate(),
                 Person.Gender.MALE);
     }
 }

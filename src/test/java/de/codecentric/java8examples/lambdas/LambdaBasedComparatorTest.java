@@ -1,6 +1,6 @@
 package de.codecentric.java8examples.lambdas;
 
-import static de.codecentric.java8examples.TestUtil.getPersons;
+import static de.codecentric.java8examples.TestData.listOfPersons;
 import static org.hamcrest.number.OrderingComparison.lessThanOrEqualTo;
 import static org.junit.Assert.assertThat;
 
@@ -21,7 +21,7 @@ public class LambdaBasedComparatorTest {
 
     @Before
     public void setUp() throws Exception {
-        persons = getPersons();
+        persons = listOfPersons();
     }
 
     @Test

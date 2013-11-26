@@ -1,7 +1,7 @@
 package de.codecentric.java8examples;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Period;
 
 /**
  * A simple class that represents a person
@@ -12,27 +12,27 @@ public class Person {
         MALE, FEMALE
     }
 
-    private final String name;
+    private final String firstName;
     private final String lastName;
-    private final Date birthDay;
+    private final LocalDate birthDay;
     private Gender gender;
 
-    public Person(String name, String lastName, Date birthDay, Gender gender) {
-        this.name = name;
+    public Person(String firstname, String lastName, LocalDate birthDay, Gender gender) {
+        this.firstName = firstname;
         this.lastName = lastName;
         this.birthDay = birthDay;
         this.gender = gender;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public Date getBirthDay() {
+    public LocalDate getBirthDay() {
         return birthDay;
     }
 
@@ -45,17 +45,7 @@ public class Person {
     }
 
     public int getAge() {
-        Calendar now = Calendar.getInstance();
-        Calendar birth = Calendar.getInstance();
-        birth.setTime(getBirthDay());
-
-        int years = now.get(Calendar.YEAR) - birth.get(Calendar.YEAR);
-        if(now.get(Calendar.MONTH) > birth.get(Calendar.MONTH) ||
-                now.get(Calendar.MONTH) == birth.get(Calendar.MONTH) && birth.get(Calendar.DATE) > now.get(Calendar.DATE)) {
-            years--;
-        }
-
-        return years;
+        return Period.between(getBirthDay(), LocalDate.now()).getYears();
     }
 
     @Override
@@ -68,14 +58,14 @@ public class Person {
         if (birthDay != null ? !birthDay.equals(person.birthDay) : person.birthDay != null) return false;
         if (gender != person.gender) return false;
         if (lastName != null ? !lastName.equals(person.lastName) : person.lastName != null) return false;
-        if (name != null ? !name.equals(person.name) : person.name != null) return false;
+        if (firstName != null ? !firstName.equals(person.firstName) : person.firstName != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
+        int result = firstName != null ? firstName.hashCode() : 0;
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (birthDay != null ? birthDay.hashCode() : 0);
         result = 31 * result + (gender != null ? gender.hashCode() : 0);
@@ -85,7 +75,7 @@ public class Person {
     @Override
     public String toString() {
         return "Person{" +
-                "name='" + name + '\'' +
+                "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthDay=" + birthDay +
                 ", gender=" + gender +
