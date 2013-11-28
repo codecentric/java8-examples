@@ -10,6 +10,7 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.chrono.ThaiBuddhistDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 
 import org.joda.time.DateTime;
@@ -17,15 +18,14 @@ import org.joda.time.DateTimeFieldType;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Interval;
 import org.joda.time.chrono.BuddhistChronology;
+import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
 
 /**
  * <a href="http://blog.joda.org/2009/11/why-jsr-310-isn-joda-time_4941.html">Why JSR-310 isn't Joda-Time</a><br/>
  * <a href="http://jug.ua/wp-content/uploads/2013/02/JODAjsr310.pdf">nice presentation (JUG Ukraine)</a><br/>
  * <a href="http://openjdk.java.net/projects/threeten/">project page</a><br/>
- * <a href="http://greannetwork.wordpress.com/2012/12/11/jsr-310-date-and-time-api-example/">examples 1</a><br/>
- * <a href="https://today.java.net/pub/a/today/2008/09/18/jsr-310-new-java-date-time-api.html">examples 2</a><br/>
- * <a href="http://download.java.net/jdk8/docs/api/java/time/package-summary.html">Java-Doc/a><br/>
+ * <a href= "http://download.java.net/jdk8/docs/api/java/time/package-summary.html" >Java-Doc</a><br/>
  * 
  * <br>
  * <h3>Joda</h3>
@@ -87,7 +87,7 @@ public class TimeApiTest {
 	org.joda.time.Period betweenJoda = new org.joda.time.Period(birthdayJoda, org.joda.time.LocalDate.now());
 	System.out.println(betweenJoda.getYears() + " Years " + betweenJoda.getMonths() + " Months " + betweenJoda.getDays() + " Days.");
 	assertEquals(32, betweenJoda.getYears());
-	assertEquals(2, betweenJoda.getMonths()); 
+	assertEquals(2, betweenJoda.getMonths());
     }
 
     @Test
@@ -154,7 +154,7 @@ public class TimeApiTest {
 
 	assertEquals(60 * 60 * 1, zonedDateTimeEurope.getOffset().getTotalSeconds());
 	assertEquals("Europe/Berlin", zonedDateTimeEurope.getZone().getId());
-	assertFalse(zonedDateTimeEurope.isBefore(zonedDateTimeUTC));
+	assertFalse(zonedDateTimeEurope.isBefore(zonedDateTimeUTC)); 
 	assertFalse(zonedDateTimeEurope.isAfter(zonedDateTimeUTC));
 	assertTrue(zonedDateTimeEurope.isEqual(zonedDateTimeUTC));
 
@@ -169,8 +169,19 @@ public class TimeApiTest {
 	assertTrue(dateTimeEuropeJoda.isEqual(dateTimeUTCJoda));
     }
 
-    // TODO Formatting & Parsing
-    // TODO Conversion Hibernate? SQL - zur��ck zu util.date
-    // TODO Null-Handling und beschriebene Unterschiede
+    @Test
+    public void parsingAndFormatting() {
+	// JSR-310
+	DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+	LocalDate parsedDate = LocalDate.parse("03.09.1981", fmt);
+	assertEquals(LocalDate.of(1981, 9, 3), parsedDate);
+	assertEquals("03.09.1981", fmt.format(LocalDate.of(1981, 9, 3)));
+
+	// Joda
+	org.joda.time.format.DateTimeFormatter fmtJoda = DateTimeFormat.forPattern("dd.MM.yyyy");
+	org.joda.time.LocalDate parsedDateJoda = org.joda.time.LocalDate.parse("03.09.1981", fmtJoda);
+	assertEquals(new org.joda.time.LocalDate(1981, 9, 3), parsedDateJoda);
+	assertEquals("03.09.1981", fmtJoda.print(new org.joda.time.LocalDate(1981, 9, 3)));
+    }
 
 }
