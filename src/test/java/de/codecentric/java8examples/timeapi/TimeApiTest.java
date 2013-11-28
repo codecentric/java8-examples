@@ -80,14 +80,14 @@ public class TimeApiTest {
 	Period between = Period.between(birthday, LocalDate.now());
 	System.out.println(between.getYears() + " Years " + between.getMonths() + " Months " + between.getDays() + " Days.");
 	assertEquals(32, between.getYears());
-	assertEquals(1, between.getMonths());
+	assertEquals(2, between.getMonths());
 
 	// Joda
 	org.joda.time.LocalDate birthdayJoda = new org.joda.time.LocalDate(1981, 9, 3);
 	org.joda.time.Period betweenJoda = new org.joda.time.Period(birthdayJoda, org.joda.time.LocalDate.now());
 	System.out.println(betweenJoda.getYears() + " Years " + betweenJoda.getMonths() + " Months " + betweenJoda.getDays() + " Days.");
 	assertEquals(32, betweenJoda.getYears());
-	assertEquals(1, betweenJoda.getMonths());
+	assertEquals(2, betweenJoda.getMonths()); 
     }
 
     @Test
@@ -152,7 +152,7 @@ public class TimeApiTest {
 	ZonedDateTime zonedDateTimeEurope = ZonedDateTime.now();
 	ZonedDateTime zonedDateTimeUTC = ZonedDateTime.now(ZoneId.of("UTC"));
 
-	assertEquals(60 * 60 * 2, zonedDateTimeEurope.getOffset().getTotalSeconds());
+	assertEquals(60 * 60 * 1, zonedDateTimeEurope.getOffset().getTotalSeconds());
 	assertEquals("Europe/Berlin", zonedDateTimeEurope.getZone().getId());
 	assertFalse(zonedDateTimeEurope.isBefore(zonedDateTimeUTC));
 	assertFalse(zonedDateTimeEurope.isAfter(zonedDateTimeUTC));
@@ -162,7 +162,7 @@ public class TimeApiTest {
 	DateTime dateTimeEuropeJoda = DateTime.now();
 	DateTime dateTimeUTCJoda = DateTime.now(DateTimeZone.UTC);
 
-	assertEquals(60 * 60 * 2 * 1000, dateTimeEuropeJoda.getZone().getOffset(dateTimeEuropeJoda.getMillis()));
+	assertEquals(60 * 60 * 1 * 1000, dateTimeEuropeJoda.getZone().getOffset(dateTimeEuropeJoda.getMillis()));
 	assertEquals("Europe/Berlin", dateTimeEuropeJoda.getZone().getID());
 	assertFalse(dateTimeEuropeJoda.isBefore(dateTimeUTCJoda));
 	assertFalse(dateTimeEuropeJoda.isAfter(dateTimeUTCJoda));
@@ -170,7 +170,7 @@ public class TimeApiTest {
     }
 
     // TODO Formatting & Parsing
-    // TODO Conversion Hibernate? SQL - zurück zu util.date
+    // TODO Conversion Hibernate? SQL - zur��ck zu util.date
     // TODO Null-Handling und beschriebene Unterschiede
 
 }
