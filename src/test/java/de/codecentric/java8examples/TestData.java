@@ -31,6 +31,22 @@ public class TestData {
                         new InvoiceItem("Burger", 5, BigDecimal.valueOf(5)),
                         new InvoiceItem("Coke", 1, BigDecimal.valueOf(5)))),
                 new Invoice("Crusty Burger", "Bart", Arrays.asList(
-                        new InvoiceItem("Coke", 1, BigDecimal.valueOf(5)))));
+                        new InvoiceItem("Coke", 1, BigDecimal.valueOf(5)))),
+                new Invoice("Kwik-E-Mart", "Homer", Arrays.asList(
+                        new InvoiceItem("Beer", 9, BigDecimal.valueOf(0.9)),
+                        new InvoiceItem("Chips", 2, BigDecimal.valueOf(0.5)))),
+                new Invoice("Moe", "Marge", Arrays.asList(
+                        new InvoiceItem("Beer", 1, BigDecimal.valueOf(1.5)))),
+                new Invoice("Kwik-E-Mart", "Bart", Arrays.asList(
+                        new InvoiceItem("Coke", 2, BigDecimal.valueOf(2.5)),
+                        new InvoiceItem("Chips", 2, BigDecimal.valueOf(0.5)))),
+                new Invoice("Kwik-E-Mart", "Marge", Arrays.asList(
+                        new InvoiceItem("Cake", 2, BigDecimal.valueOf(3.4)),
+                        new InvoiceItem("Corn Flakes", 5, BigDecimal.valueOf(2.3)))),
+                new Invoice("Moe", "Homer", Arrays.asList(
+                        new InvoiceItem("Beer", 5, BigDecimal.valueOf(1.5)))),
+                new Invoice("Flander's Left-Handed Store", "Marge", Arrays.asList(
+                        new InvoiceItem("Left-Handed Scissors", 1, BigDecimal.valueOf(10.0))))
+                );
     }
 }
