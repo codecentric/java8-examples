@@ -24,14 +24,14 @@ public class TestData {
 
     public static List<Invoice> listOfInvoices() {
         return Arrays.asList(
-                new Invoice("Moe", "Homer", Arrays.asList(
-                        new InvoiceItem("Beer", 13, BigDecimal.valueOf(1.5)),
-                        new InvoiceItem("Burger", 3, BigDecimal.valueOf(4.5)))),
                 new Invoice("Crusty Burger", "Homer", Arrays.asList(
                         new InvoiceItem("Burger", 5, BigDecimal.valueOf(5)),
                         new InvoiceItem("Coke", 1, BigDecimal.valueOf(5)))),
                 new Invoice("Crusty Burger", "Bart", Arrays.asList(
                         new InvoiceItem("Coke", 1, BigDecimal.valueOf(5)))),
+                new Invoice("Moe", "Homer", Arrays.asList(
+                        new InvoiceItem("Beer", 13, BigDecimal.valueOf(1.5)),
+                        new InvoiceItem("Burger", 3, BigDecimal.valueOf(4.5)))),
                 new Invoice("Kwik-E-Mart", "Homer", Arrays.asList(
                         new InvoiceItem("Beer", 9, BigDecimal.valueOf(0.9)),
                         new InvoiceItem("Chips", 2, BigDecimal.valueOf(0.5)))),

@@ -1,6 +1,7 @@
 package de.codecentric.java8examples.streaming;
 
 import de.codecentric.java8examples.Invoice;
+import de.codecentric.java8examples.InvoiceItem;
 import de.codecentric.java8examples.Person;
 
 import java.util.Collections;
