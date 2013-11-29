@@ -19,7 +19,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class CollectingAndReducingTest {
     private List<Person> persons = TestData.listOfPersons();
-
     private List<Invoice> invoices = TestData.listOfInvoices();
     private List<String> recipients = Arrays.asList("Homer", "Bart", "Marge");
 
@@ -93,7 +92,7 @@ public class CollectingAndReducingTest {
     public void testExpensesByRecipient() throws Exception {
         Map<String,BigDecimal> expencesByRecipient =
                 CollectingAndReducing.expensesByRecipient(invoices);
-        assertThat(expencesByRecipient.keySet(), hasSize(invoices.size()));
+        assertThat(expencesByRecipient.keySet(), hasSize(recipients.size()));
         for (String recipient: recipients) {
             BigDecimal expenses = BigDecimal.ZERO;
             for (Invoice invoice: invoices) {
