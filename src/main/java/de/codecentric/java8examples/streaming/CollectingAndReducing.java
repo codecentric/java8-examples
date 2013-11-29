@@ -17,28 +17,21 @@ public class CollectingAndReducing {
      * Compute the average age of the given list of Persons.
      */
     public static Double averageAge(List<Person> persons) {
-        return persons.stream()
-                .mapToInt(Person::getAge)
-                .average().getAsDouble();
-
+        return 0d;
     }
 
     /**
      * How old is the oldest person in the given list.
      */
     public static Integer maxAge(List<Person> persons) {
-        return persons.stream()
-                .mapToInt(Person::getAge)
-                .max().getAsInt();
+        return 0;
     }
 
     /**
      * Compute Age-Statistics (max, min, average, ...) for the given list of Persons.
      */
     public static IntSummaryStatistics ageStatistics(List<Person> persons) {
-        return persons.stream()
-                .mapToInt(Person::getAge)
-                .summaryStatistics();
+        return null;
     }
 
     /**
@@ -47,36 +40,28 @@ public class CollectingAndReducing {
      * Example-Result: "Maggie, Marge, Mary"
      */
     public static String buildCommaSeparatedListOfFirstNames(List<Person> persons) {
-        return persons.stream()
-                .map(Person::getFirstName)
-                .collect(Collectors.joining(", "));
+        return "";
     }
 
     /**
      * Identify the cheapest product (by pricePerUnit) in all invoices.
      */
     public static String cheapestProduct(List<Invoice> invoices) {
-        return invoices.stream()
-                .flatMap(invoice -> invoice.getItems().stream())
-                .min(Comparator.comparing(InvoiceItem::getPricePerUnit))
-                .get().getProduct();
+        return "";
     }
 
     /**
      * Identify the invoice with the highest total amount.
      */
     public static Invoice mostExpensiveInvoice(List<Invoice> invoices) {
-        return invoices.stream()
-                .collect(Collectors.<Invoice>maxBy(
-                        Comparator.comparing(Invoice::getTotal))).get();
+        return null;
     }
 
     /**
      * Just what the method name says.
      */
     public static Map<String, List<Invoice>> groupInvoicesByRecipient(List<Invoice> invoices) {
-        return invoices.stream()
-                .collect(Collectors.groupingBy(Invoice::getRecipient));
+        return Collections.emptyMap();
     }
 
     /**
@@ -85,25 +70,14 @@ public class CollectingAndReducing {
      * Hint: Use the two-argument version of Collectors.groupingBy together with Collectors.mapping.
      */
     public static Map<String, BigDecimal> expensesByRecipient(List<Invoice> invoices) {
-        return invoices.stream()
-                .collect(Collectors.groupingBy(
-                        Invoice::getRecipient,
-                        Collectors.mapping(
-                                Invoice::getTotal,
-                                Collectors.reducing(
-                                        BigDecimal.ZERO,
-                                        (sum, elem) -> sum.add(elem)))));
+        return Collections.emptyMap();
     }
 
     /**
      * How many items of each product have been purchased?
      */
     public static Map<String, Integer> countByProduct(List<Invoice> invoices) {
-        return invoices.stream()
-                .flatMap(invoice -> invoice.getItems().stream())
-                .collect(Collectors.groupingBy(
-                        InvoiceItem::getProduct,
-                        Collectors.summingInt(InvoiceItem::getQuantity)));
+        return Collections.emptyMap();
     }
 
     /**

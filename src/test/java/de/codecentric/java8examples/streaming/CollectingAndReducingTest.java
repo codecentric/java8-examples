@@ -11,6 +11,7 @@ import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 
+import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -41,6 +42,7 @@ public class CollectingAndReducingTest {
     @Test
     public void testAgeStatistics() throws Exception {
         IntSummaryStatistics statistic = CollectingAndReducing.ageStatistics(persons);
+        assertNotNull(statistic);
         assertThat(statistic.getAverage(), equalTo(30.571428571428573));
         assertThat(statistic.getCount(), equalTo(7l));
         assertThat(statistic.getMax(), equalTo(46));
