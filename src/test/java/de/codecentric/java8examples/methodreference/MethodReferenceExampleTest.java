@@ -20,7 +20,19 @@ public class MethodReferenceExampleTest {
     }
 
     @Test
-    public void methodReferencToFooMethod() throws Exception {
+    public void callbackWithoutMethodReference() throws Exception {
+        Callable<String> callable = new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                return myFoo.doSomething();
+            }
+        };
+
+        assertEquals(myFoo.doSomething(), callable.call());
+    }
+
+    @Test
+    public void callbackWithMethodReference() throws Exception {
         Callable<String> callable = myFoo::doSomething;
 
         assertEquals(myFoo.doSomething(), callable.call());

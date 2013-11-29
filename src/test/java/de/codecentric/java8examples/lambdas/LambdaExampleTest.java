@@ -34,10 +34,24 @@ public class LambdaExampleTest {
                 return person.getAge() > 30;
             }
         }));
+    }
 
-        // new: implement the predicate using lambda expression
+    @Test
+    public void peterIsOlderThan30WithBlockLambda() throws Exception {
+        // new: implement the predicate using a block lambda expression
+        assertTrue(example.matches((Person p) -> {
+            return p.getAge() > 30;
+        }));
+    }
+
+    @Test
+    public void peterIsOlderThan30WithOneLineLambda() throws Exception {
+        // implement the predicate using a one line lambda expression
         assertTrue(example.matches((Person person) -> person.getAge() > 30));
+    }
 
+    @Test
+    public void peterIsOlderThan30WithTypeInference() throws Exception {
         // even shorter: let the compiler work out the correct type
         assertTrue(example.matches(p -> p.getAge() > 30));
     }
