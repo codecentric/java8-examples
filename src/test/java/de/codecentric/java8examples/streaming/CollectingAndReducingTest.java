@@ -1,16 +1,15 @@
 package de.codecentric.java8examples.streaming;
 
 import de.codecentric.java8examples.Invoice;
+import de.codecentric.java8examples.InvoiceItem;
 import de.codecentric.java8examples.Person;
 import de.codecentric.java8examples.TestData;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.IntSummaryStatistics;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -41,6 +40,7 @@ public class CollectingAndReducingTest {
     @Test
     public void testAgeStatistics() throws Exception {
         IntSummaryStatistics statistic = CollectingAndReducing.ageStatistics(persons);
+        assertNotNull(statistic);
         assertThat(statistic.getAverage(), equalTo(30.571428571428573));
         assertThat(statistic.getCount(), equalTo(7l));
         assertThat(statistic.getMax(), equalTo(46));
@@ -107,7 +107,24 @@ public class CollectingAndReducingTest {
 
     @Test
     public void testCountByProduct() throws Exception {
+        Map<String, Integer> expected = new HashMap<>();
+        for (Invoice invoice: invoices) {
+            for (InvoiceItem item: invoice.getItems()) {
+                String product = item.getProduct();
+                if (expected.get(product) == null) {
+                    expected.put(product, Integer.valueOf(0));
+                }
+                expected.put(
+                        product,
+                        expected.get(product) + item.getQuantity());
+            }
+        }
 
+        Map<String, Integer> actual = CollectingAndReducing.countByProduct(invoices);
+        assertThat(actual.keySet(), hasSize(expected.size()));
+        for (Map.Entry entry: expected.entrySet()) {
+            assertThat(actual, hasEntry(entry.getKey(), entry.getValue()));
+        }
     }
 
     @Test
