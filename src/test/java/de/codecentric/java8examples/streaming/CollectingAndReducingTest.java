@@ -133,7 +133,28 @@ public class CollectingAndReducingTest {
 
     @Test
     public void testComputeDealerInventory() throws Exception {
+        HashMap<String, List<CollectingAndReducing.ProductWithPrice>> expected = new HashMap<>();
+        for (Invoice invoice: invoices) {
+            String sender = invoice.getSender();
+            if (expected.get(sender) == null) {
+                expected.put(sender, new ArrayList<CollectingAndReducing.ProductWithPrice>());
+            }
+            List<CollectingAndReducing.ProductWithPrice> itemsOfSender = expected.get(sender);
+            for (InvoiceItem item: invoice.getItems()) {
+                CollectingAndReducing.ProductWithPrice newItem = new CollectingAndReducing.ProductWithPrice(item.getProduct(), item.getPricePerUnit());
+                if (!itemsOfSender.contains(newItem)) {
+                    itemsOfSender.add(newItem);
+                }
+            }
+        }
 
+        Map<String, List<CollectingAndReducing.ProductWithPrice>> actual =
+                CollectingAndReducing.computeDealerInventory(invoices);
+
+        assertThat(actual.keySet(), hasSize(expected.size()));
+        for (String sender: expected.keySet()) {
+            assertThat("Unexpected item set for dealer " + sender, actual.get(sender), containsInAnyOrder(expected.get(sender).toArray()));
+        }
     }
 
     @Test
