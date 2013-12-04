@@ -54,6 +54,7 @@ public class FilteringAndMappingTest {
 
     @Test
     public void testExtractAllProducts() throws Exception {
-	MatcherAssert.assertThat(FilteringAndMapping.extractAllProducts(invoices), containsInAnyOrder("Beer", "Burrito", "Coke"));
+	MatcherAssert.assertThat(FilteringAndMapping.extractAllProducts(invoices),
+		containsInAnyOrder("Beer", "Burger", "Corn Flakes", "Chips", "Coke", "Cake", "Left-Handed Scissors"));
     }
 }

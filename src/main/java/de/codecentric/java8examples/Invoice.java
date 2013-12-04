@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 public class Invoice {
 
     private String sender;
@@ -23,13 +25,7 @@ public class Invoice {
     }
 
     public BigDecimal getTotal() {
-        return getItems().stream()
-                .map(invoice -> invoice
-                        .getPricePerUnit()
-                        .multiply(BigDecimal.valueOf(invoice.getQuantity())))
-                .collect(Collectors.reducing(
-                        BigDecimal.ZERO,
-                        (sum, elem) -> sum.add(elem)));
+        throw new NotImplementedException();
     }
 
     public Invoice(String sender, String recipient, List<InvoiceItem> items) {
