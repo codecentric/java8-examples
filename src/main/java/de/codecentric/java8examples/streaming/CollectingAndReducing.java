@@ -120,7 +120,25 @@ public class CollectingAndReducing {
      * From a given list of invoices, compute for every dealer the available products together with its price.
      */
     public static Map<String, List<ProductWithPrice>> computeDealerInventory(List<Invoice> invoices) {
-        return Collections.emptyMap();
+        Function<SimpleEntry<String, ProductWithPrice>, String> classifier =
+                (SimpleEntry<String, ProductWithPrice> entry) -> (String) entry.getKey();
+        Function<SimpleEntry<String, ProductWithPrice>, ProductWithPrice> mapper =
+                (SimpleEntry<String, ProductWithPrice> entry) -> (ProductWithPrice) entry.getValue();
+
+        Map<String, List<Invoice>> invoicesBySender = invoices.stream()
+                .collect(Collectors.groupingBy(Invoice::getSender));
+        return invoicesBySender.entrySet().stream()
+                .<SimpleEntry<String, ProductWithPrice>>flatMap(entry -> entry.getValue().stream()
+                        .flatMap((Invoice invoice) -> invoice.getItems().stream())
+                        .map((InvoiceItem item) -> new SimpleEntry<String, ProductWithPrice>(
+                                entry.getKey(),
+                                new ProductWithPrice(item.getProduct(), item.getPricePerUnit()))))
+                .distinct()
+                .collect(Collectors.groupingBy(
+                        classifier,
+                        Collectors.mapping(
+                                mapper,
+                                Collectors.toList())));
     }
 
     /**
