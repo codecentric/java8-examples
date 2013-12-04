@@ -25,7 +25,13 @@ public class Invoice {
     }
 
     public BigDecimal getTotal() {
-        throw new NotImplementedException();
+        return getItems().stream()
+            .<BigDecimal>map(invoice -> invoice
+                    .getPricePerUnit()
+                    .multiply(BigDecimal.valueOf(invoice.getQuantity())))
+            .collect(Collectors.reducing(
+                    BigDecimal.ZERO,
+                    (sum, elem) -> sum.add(elem)));
     }
 
     public Invoice(String sender, String recipient, List<InvoiceItem> items) {
