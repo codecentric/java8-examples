@@ -60,6 +60,8 @@ public class LambdaExampleTest {
     public void getAgeFromWrappedElementViaFunctionApplication() throws Exception {
         // type is inferred from context
         assertEquals("Parker", example.apply(p -> p.getLastName()));
+        // different notation using a method reference
+        assertEquals("Parker", example.apply(Person::getLastName));
     }
 
     @Test

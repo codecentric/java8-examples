@@ -23,4 +23,10 @@ public class GreetingServiceTest {
     public void greetFromDerived() throws Exception {
         assertEquals("Salut le monde!", new DerivedGreetingService().greet());
     }
+
+    @Test
+    public void testName() throws Exception {
+        assertEquals("Hello World!", new CombinedGreetingService().greet());
+
+    }
 }
